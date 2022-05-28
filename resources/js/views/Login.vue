@@ -72,16 +72,17 @@ export default {
     })
 
     const login = async () => {
-      app.loading = true
-      app.error = false
       try {
+        app.loading = true
+        app.error = false
         await authenticate(app.credentials)
         await me()
+        router.push({ name: 'Home' })
       } catch (error) {
         app.error = true
+      } finally {
+        app.loading = false
       }
-      app.loading = false
-      router.push({ name: 'Home' })
     }
 
     return { login, app };
