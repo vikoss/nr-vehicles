@@ -18,7 +18,11 @@ module.exports = {
       'white': '#ffffff',
       'black': '#333333',
     },
-    extend: {},
+    extend: {
+      backgroundImage: {
+        'logo-nr': "url('/images/logo-nr.png')",
+      },
+    },
   },
   plugins: [],
 }
