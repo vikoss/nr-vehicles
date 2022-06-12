@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DocumentTypeController;
+use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\VehicleDocumentsController;
 
 /*
 |--------------------------------------------------------------------------
@@ -23,3 +26,8 @@ Route::group([
     Route::post('/refresh', [AuthController::class, 'refresh']);
     Route::get('/me', [AuthController::class, 'userProfile']);
 });
+
+Route::get('/vehicles', [VehicleController::class, 'index']);
+Route::get('/document-types', [DocumentTypeController::class, 'index']);
+Route::post('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 'store']);
+Route::get('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 'index']);
