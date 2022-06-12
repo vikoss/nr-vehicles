@@ -27,7 +27,7 @@ Route::group([
     Route::get('/me', [AuthController::class, 'userProfile']);
 });
 
-Route::get('/vehicles', [VehicleController::class, 'index']);
-Route::get('/document-types', [DocumentTypeController::class, 'index']);
 Route::post('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 'store']);
 Route::get('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 'index']);
+Route::get('/vehicles', [VehicleController::class, 'index']);
+Route::get('/document-types', [DocumentTypeController::class, 'index']);
