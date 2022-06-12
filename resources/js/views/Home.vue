@@ -1,13 +1,37 @@
 <template>
-  <h1>Hello</h1>
+  <header-base />
+  <main class="px-6 sm:px-16 py-12">
+    <div class="grid gap-3 grid-cols-1 sm:grid-cols-2">
+      <div class="col-span-1">
+        <card-base
+          label="Notificar"
+          description="Realizar busqueda."
+          :redirect-to="{ name: 'Search' }"
+        />
+      </div>
+      <div class="col-span-1">
+        <card-base
+          label="Realizar actualizacion."
+          description="Estadisticas de notificaciones realizadas."
+          :redirect-to="{ name: 'Search' }"
+        />
+      </div>
+      <div class="col-span-1">
+        <card-base
+          label="Ver notificaciones recibidas"
+          description="Bandeja de entrada para notificaciones recibidas."
+          :redirect-to="{ name: 'Search' }"
+        />
+      </div>
+    </div>
+  </main>
 </template>
 
 <script>
-export default {
+import HeaderBase from './../components/HeaderBase.vue'
+import CardBase from './../components/CardBase.vue'
 
+export default {
+  components: { HeaderBase, CardBase }
 }
 </script>
-
-<style>
-
-</style>
