@@ -11,4 +11,9 @@ class VehicleController extends Controller
     {
         return Vehicle::where('economic_number', 'like', "%{$request->get('economic_number')}%")->paginate();
     }
+
+    public function show(Vehicle $vehicle)
+    {
+        return $vehicle;
+    }
 }
