@@ -16,6 +16,16 @@ const routes = [
     name: 'Search',
     component: () => import ('./../views/Search.vue'),
   },
+  {
+    path: '/vehiculos/:vehicle',
+    name: 'VehicleDetail',
+    component: () => import ('./../views/Vehicle/Details.vue'),
+  },
+  {
+    path: '/vehiculos/:vehicle/documentos',
+    name: 'VehicleDocuments',
+    component: () => import ('./../views/Vehicle/Documents.vue'),
+  },
 ];
 
 const router = createRouter({
