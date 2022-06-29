@@ -6,15 +6,26 @@
 </template>
 
 <script>
-import { useRouter } from "vue-router"
-import ArrowLeftSvg from "../svg/ArrowLeft.vue"
+import { useRouter } from 'vue-router'
+import ArrowLeftSvg from '../svg/ArrowLeft.vue'
 
 export default {
   name: 'RedirectToBack',
+  props: {
+    route: {
+      type: Function,
+      default: () => (false),
+    },
+  },
   components: { ArrowLeftSvg },
-  setup() {
+  setup(props) {
     const router = useRouter()
-    const goBack = () => router.go(-1)
+    const goBack = () => {
+      if (props.route()) {
+        return
+      }
+      router.go(-1)
+    }
 
     return { goBack }
   },
