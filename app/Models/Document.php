@@ -15,4 +15,12 @@ class Document extends Model
         'document_type_id',
         'vehicle_id',
     ];
+
+    /**
+     * Get the document type associated with the document.
+     */
+    public function documentType()
+    {
+        return $this->belongsTo(DocumentType::class);
+    }
 }
