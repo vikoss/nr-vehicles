@@ -14,6 +14,6 @@ class VehicleDocumentsController extends Controller
 
     public function index(Vehicle $vehicle, Request $request)
     {
-        return $vehicle->documents()->paginate();
+        return $vehicle->documents()->with('documentType')->paginate();
     }
 }
