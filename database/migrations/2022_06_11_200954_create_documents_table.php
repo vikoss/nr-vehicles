@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('description')->nullable();
             $table->foreignId('document_type_id')->constrained('document_types');
             $table->foreignId('vehicle_id')->constrained('vehicles');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
