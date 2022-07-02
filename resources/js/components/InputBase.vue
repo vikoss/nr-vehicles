@@ -6,7 +6,10 @@
     {{ label }}
     <input
       :id="id"
-      class="h-11 py-3 px-3.5 rounded-md border border-wine border-solid outline-none text-gray text-base font-medium mt-1 w-full focus:border-2 focus:shadow"
+      class="h-11 py-3 px-3.5 rounded-md border border-wine border-solid
+        outline-none text-gray text-base font-medium mt-1 w-full focus:border-2
+        focus:shadow disabled:bg-gray-300 disabled:border-gray-100
+      "
       :class="{'uppercase': isUpperCase, [classInput]: true}"
       :type="type"
       :placeholder="placeholder"
