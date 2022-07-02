@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\DocumentController;
 use App\Http\Controllers\DocumentTypeController;
 use App\Http\Controllers\UtilController;
 use App\Http\Controllers\VehicleController;
@@ -33,5 +34,6 @@ Route::get('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 
 Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::get('/vehicles/{vehicle}', [VehicleController::class, 'show']);
 Route::get('/document-types', [DocumentTypeController::class, 'index']);
+Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
 
 Route::post('/upload-file', [UtilController::class, 'uploadFile']);
