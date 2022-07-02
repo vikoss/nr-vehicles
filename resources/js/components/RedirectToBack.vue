@@ -1,13 +1,13 @@
 <template>
   <div @click="goBack" class="flex items-center cursor-pointer">
-    <arrow-left-svg />
+    <arrow-go-to-back />
     <p class="text-wine text-lg ml-2">Regresar</p>
   </div>
 </template>
 
 <script>
 import { useRouter } from 'vue-router'
-import ArrowLeftSvg from '../svg/ArrowLeft.vue'
+import ArrowGoToBack from '../svg/ArrowGoToBack.vue'
 
 export default {
   name: 'RedirectToBack',
@@ -17,7 +17,7 @@ export default {
       default: () => (false),
     },
   },
-  components: { ArrowLeftSvg },
+  components: { ArrowGoToBack },
   setup(props) {
     const router = useRouter()
     const goBack = () => {
