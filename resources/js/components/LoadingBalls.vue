@@ -1,8 +1,10 @@
 <template>
-  <div style="width: 230px; height: 150px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content:space-between;">
-    <div class="bg-wine ball"></div>
-    <div class="bg-wine ball"></div>
-    <div class="bg-wine ball"></div>
+  <div>
+    <div style="width: 230px; height: 150px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content:space-between;" class="mx-auto">
+      <div class="bg-wine ball"></div>
+      <div class="bg-wine ball"></div>
+      <div class="bg-wine ball"></div>
+    </div>
   </div>
 </template>
 
