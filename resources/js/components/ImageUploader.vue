@@ -2,35 +2,27 @@
   <div>
     <div class="flex w-full">
       <div class="w-full lg:w-1/2">
-        <p class="text-blue-second font-bold text-base">
+        <p class="text-wine font-bold text-base">
           {{ documentName }}
         </p>
-        <p v-if="required" class="text-xs text-black opacity-50">
-          * Campo obligatorio
+        <p v-if="required" class="text-xs" style="color: #999999;">
+          * Campo no obligatorio
         </p>
       </div>
       <div class="hidden lg:w-1/2 lg:block">
         <button-base
-          class="max-w-xs mx-auto bg-blue-second"
+          class="max-w-xs mx-auto text-wine border-solid border-wine"
+          style="background-color: #ffffff; border-width: 3px;"
           label="Cargar archivos"
           :disabled="disabledMainButton"
           @click="onClickButton"
         />
       </div>
     </div>
-    <!-- <div v-if="showCheckBox" class="flex justify-end items-end mt-1">
-      <check-box-base
-        :id="`checkbox_${documentTechnicalName}`"
-        v-model="checkBox"
-        label="Volver a solicitar documento"
-        small
-        @update:model-value="onReapplyDocument"
-      />
-    </div> -->
     <input
       :id="documentTechnicalName"
       type="file"
-      accept="image/*"
+      accept=".pdf,image/*"
       multiple
       hidden
       @change="onChange"
@@ -39,16 +31,18 @@
       <preview-image
         v-for="(document, index) in documents"
         :key="index"
-        class="mt-6"
-        :img="document"
+        class="my-4"
+        :img="document.url"
         :document-index="index"
         :hide-trash-icon="hideTrashIcon"
+        :document-type="document.file.type"
         @delete-image="deleteImage"
       />
     </div>
-    <div class="mt-3 lg:hidden">
+    <div class="mt-2 lg:hidden">
       <button-base
-        class="max-w-xs ml-0 mx-auto bg-blue-second"
+        class="max-w-xs ml-0 mx-auto border-solid border-wine text-wine"
+        style="background-color: #ffffff; border-width: 3px;"
         label="Cargar archivos"
         :disabled="disabledMainButton"
         @click="onClickButton"
