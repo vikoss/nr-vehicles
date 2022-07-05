@@ -26,6 +26,16 @@ const routes = [
     name: 'VehicleDocuments',
     component: () => import ('./../views/Vehicle/Documents.vue'),
   },
+  {
+    path: '/vehiculos/:vehicle/agregar-documentos',
+    name: 'UploadDocuments',
+    component: () => import ('./../views/Document/Upload.vue'),
+  },
+  {
+    path: '/catalogos/tipos-de-documentos',
+    name: 'DocumentTypes',
+    component: () => import ('./../views/DocumentType/Index.vue'),
+  },
 ];
 
 const router = createRouter({
