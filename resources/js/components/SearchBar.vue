@@ -1,9 +1,9 @@
 <template>
-  <div class="bg-gray-100 h-14 py-2 px-9" style="box-shadow: 0px 3px 6px #00000029;">
+  <div class="bg-gray-100 h-16 py-2 px-9 flex flex-col justify-center" style="box-shadow: 0px 3px 6px #00000029;">
     <div class="bg-white flex rounded-md justify-center items-center">
       <input
         :id="id"
-        class="h-10 py-3 px-3.5 rounded-md outline-none text-black text-base font-medium w-full focus:shadow"
+        class="h-10 py-3 px-3.5 rounded-md outline-none text-black text-sm sm:text-base font-medium w-full focus:shadow"
         :class="{'uppercase': isUpperCase, [classInput]: true}"
         :type="type"
         :placeholder="placeholder"
