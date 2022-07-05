@@ -1,7 +1,9 @@
 <template>
-  <div @click="goBack" class="flex items-center cursor-pointer">
-    <arrow-go-to-back />
-    <p class="text-wine text-lg ml-2">Regresar</p>
+  <div class="inline-block">
+    <div @click="goBack" class="flex items-center cursor-pointer">
+      <arrow-go-to-back />
+      <p class="text-wine text-lg ml-2">Regresar</p>
+    </div>
   </div>
 </template>
 
