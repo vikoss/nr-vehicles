@@ -17,13 +17,13 @@ class VehicleSeeder extends Seeder
     {
         collect(DataToMigrate::vehicles())->each(function($vehicle) {
             Vehicle::create([
-                'inventory_number'  => $vehicle[0],
-                'name'              => $vehicle[1],
-                'brand'             => $vehicle[2],
-                'model'             => $vehicle[3],
-                'economic_number'   => $vehicle[4],
-                'serial_number'     => $vehicle[5],
-                'responsible_area'  => $vehicle[6],
+                'inventory_number'  => $vehicle['inventory_number'],
+                'name'              => $vehicle['name'],
+                'brand'             => $vehicle['brand'],
+                'model'             => $vehicle['model'],
+                'economic_number'   => $vehicle['economic_number'],
+                'serial_number'     => $vehicle['serial_number'],
+                'direction_id'      => $vehicle['direction_id'],
             ]);
         });
     }
