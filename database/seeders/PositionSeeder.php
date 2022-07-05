@@ -17,8 +17,8 @@ class PositionSeeder extends Seeder
     {
         collect(DataToMigrate::positions())->each(function($position) {
             Position::create([
-                'name'              => $position,
-                'departament_id'    => 1,
+                'name'              => $position['name'],
+                'departament_id'    => $position['departament_id'],
             ]);
         });
     }
