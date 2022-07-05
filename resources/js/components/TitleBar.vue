@@ -1,14 +1,16 @@
 <template>
-  <h1 class="mt-5 text-wine text-3xl font-bold">
-    {{ title }}
-  </h1>
-  <span class="h-0.5 w-16 block bg-wine mt-4 mb-5" />
-  <h2 class="text-base text-black mb-12">
-    <slot name="subtitle" v-if="subtitle === ''" />
-    <template v-if="subtitle !== ''">
-      {{ subtitle }}
-    </template>
-  </h2>
+  <div class="mb-6 mt-5 md:mb-12">
+    <h1 class="text-wine text-3xl font-bold">
+      {{ title }}
+    </h1>
+    <span class="h-0.5 w-20 block bg-wine my-3 sm:mt-4 sm:mb-5" />
+    <h2 class="text-base text-black">
+      <slot name="subtitle" v-if="subtitle === ''" />
+      <template v-if="subtitle !== ''">
+        {{ subtitle }}
+      </template>
+    </h2>
+  </div>
 </template>
 
 <script>
