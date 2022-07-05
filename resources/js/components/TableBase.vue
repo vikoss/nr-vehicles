@@ -1,5 +1,5 @@
 <template>
-  <table class="w-full text-center border-separate" style="border-spacing: 20px;">
+  <table class="w-full text-center border-separate" style="border-spacing: 0px 20px;">
     <tr>
       <th class="text-wine" v-for="(header, index) in headers" :key="index">{{ header.label }}</th>
     </tr>
