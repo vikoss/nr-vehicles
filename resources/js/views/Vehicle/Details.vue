@@ -48,24 +48,21 @@
       :disabled="true"
       class="mb-2"
     />
-    <input-base
+    <select-base
       id="responsible_area"
-      v-model="app.vehicle.responsible_area"
       label="Área responsable:"
-      :disabled="true"
-      class="mb-2"
+      :options="app.directions"
+      v-model="app.vehicle.direction_id"
+      disabled
     />
-    <!-- <image-viewer
-      v-if="!!app.documents.length"
-      :documents="app.documents"
-    /> -->
-    <!-- <button-base
-      class="sm:max-w-sm mx-auto mt-20"
-      label="Agregar documentación"
+    <button-base
+      class="sm:max-w-sm mx-auto text-wine border-solid border-wine mt-8"
+      style="background-color: #ffffff; border-width: 3px;"
+      label="Editar"
       :loading="false"
       @click="app.goToUploadVehicleDocuments"
       :disabled="false"
-    /> -->
+    />
     <button-base
       class="sm:max-w-sm mx-auto mt-8"
       label="Consultar documentación"
@@ -77,54 +74,52 @@
 </template>
 
 <script>
-import { computed, reactive } from 'vue'
+import { reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getVehicle } from '../../api/vehicles'
-import { getDocuments } from '../../api/documents'
+import { getDirections } from './../../api/directions'
 import HeaderBase from '../../components/HeaderBase.vue'
-import SearchBar from '../../components/SearchBar.vue'
-import TableBase from '../../components/TableBase.vue'
 import RedirectToBack from '../../components/RedirectToBack.vue'
 import InputBase from '../../components/InputBase.vue'
 import ButtonBase from '../../components/ButtonBase.vue'
-import ArrowRight from '../../svg/ArrowRight.vue'
-import ImageViewer from '../../components/ImageViewer.vue'
 import TitleBar from '../../components/TitleBar.vue'
+import SelectBase from '../../components/SelectBase.vue'
+import Loading from '../../components/LoadingBalls.vue'
 
 export default {
-  components: { HeaderBase, SearchBar, TableBase, RedirectToBack, InputBase, ArrowRight, ButtonBase, ImageViewer, TitleBar, },
+  components: {
+    HeaderBase,
+    RedirectToBack,
+    TitleBar,
+    InputBase,
+    SelectBase,
+    ButtonBase,
+    Loading,
+  },
   setup() {
     const router = useRouter()
     const route = useRoute()
 
     const app = reactive({
-      value: '',
-      vehicles: [],
-      isEmpty: computed(() => {
-        if (app.vehicles.data) {
-          return !!app.vehicles.data.length
-        }
-        return false
-      }),
-      fetchDocuments: async () => {
-        const { data } =  await getDocuments(route.params.vehicle)
-        app.documents = data.map((document) => ({
-          type: document.document_type.name,
-          description: document.description,
-          url: document.url,
-        }))
-      },
       fetchVehicle: async () => {
         app.vehicle = await getVehicle(route.params.vehicle)
+      },
+      fetchDirections: async () => {
+        const directions = await getDirections()
+        app.directions = directions.map(({ name, id }) => ({ name, value: id }))
       },
       goToUploadVehicleDocuments: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
       goToVehicles: () => router.push({ name: 'Search' }),
       vehicle: {},
-      documents: [],
+      fetchInitialData: async () => {
+        app.loading = true
+        await app.fetchVehicle()
+        await app.fetchDirections()
+        app.loading = false
+      },
     })
 
-    app.fetchVehicle()
-    app.fetchDocuments()
+    app.fetchInitialData()
 
     return { app }
   },
