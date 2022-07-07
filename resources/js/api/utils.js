@@ -1,5 +1,5 @@
 import { post } from 'axios'
-import { JWT } from '../helpers/localStorage'
+import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
 
 const uploadFile = ({ path, file }) => new Promise((resolve, reject) => {

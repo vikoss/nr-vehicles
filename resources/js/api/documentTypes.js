@@ -1,5 +1,5 @@
 import { post, get } from 'axios'
-import { JWT } from '../helpers/localStorage'
+import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
 
 const getDocumentTypes = () => new Promise((resolve, reject) =>

@@ -1,5 +1,5 @@
 import { post, get, delete as destroy } from 'axios'
-import { JWT } from '../helpers/localStorage'
+import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
 
 const storeDocument = ({ vehicleId, document }) => new Promise((resolve, reject) =>
