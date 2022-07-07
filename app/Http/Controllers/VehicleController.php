@@ -14,6 +14,11 @@ class VehicleController extends Controller
 
     public function show(Vehicle $vehicle)
     {
-        return $vehicle;
+        return $vehicle->load('direction');
+    }
+
+    public function update(Vehicle $vehicle, Request $request)
+    {
+        return $vehicle->update($request->all());
     }
 }
