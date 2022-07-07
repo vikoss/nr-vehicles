@@ -25,7 +25,7 @@
 
 <script>
 import ArrowBottomSvg from './../svg/ArrowBottom.vue'
-import { currentUser } from './../helpers/localStorage'
+import { currentUser } from './../helpers/LocalStorage'
 import { reactive } from 'vue'
 import { logout } from './../api/authenticate'
 import { useRouter } from 'vue-router'
