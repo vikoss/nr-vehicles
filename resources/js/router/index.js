@@ -22,6 +22,11 @@ const routes = [
     component: () => import ('./../views/Vehicle/Details.vue'),
   },
   {
+    path: '/vehiculos/:vehicle/actualizar',
+    name: 'VehicleUpdate',
+    component: () => import ('./../views/Vehicle/Update.vue'),
+  },
+  {
     path: '/vehiculos/:vehicle/documentos',
     name: 'VehicleDocuments',
     component: () => import ('./../views/Vehicle/Documents.vue'),
