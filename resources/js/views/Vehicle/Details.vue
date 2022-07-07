@@ -60,11 +60,11 @@
       style="background-color: #ffffff; border-width: 3px;"
       label="Editar"
       :loading="false"
-      @click="app.goToUploadVehicleDocuments"
+      @click="app.goToVehicleUpdate"
       :disabled="false"
     />
     <button-base
-      class="sm:max-w-sm mx-auto mt-8"
+      class="sm:max-w-sm mx-auto mt-6"
       label="Consultar documentación"
       :loading="false"
       @click="app.goToUploadVehicleDocuments"
@@ -109,6 +109,7 @@ export default {
         app.directions = directions.map(({ name, id }) => ({ name, value: id }))
       },
       goToUploadVehicleDocuments: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
+      goToVehicleUpdate: () => router.push({ name: 'VehicleUpdate', params: { vehicle: route.params.vehicle }}),
       goToVehicles: () => router.push({ name: 'Search' }),
       vehicle: {},
       fetchInitialData: async () => {

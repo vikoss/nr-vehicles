@@ -56,6 +56,11 @@
       :disabled="false"
     />
     <loading v-show="app.loading" />
+    <modal-success
+      :show="app.modal"
+      :closed="app.closeModal"
+      message="Actualización de forma exitosa."
+    />
   </main>
 </template>
 
@@ -71,6 +76,7 @@ import ButtonBase from '../../components/ButtonBase.vue'
 import TitleBar from '../../components/TitleBar.vue'
 import SelectBase from '../../components/SelectBase.vue'
 import Loading from '../../components/LoadingBalls.vue'
+import ModalSuccess from '../../components/ModalSuccess.vue'
 
 export default {
   components: {
@@ -81,6 +87,7 @@ export default {
     SelectBase,
     ButtonBase,
     Loading,
+    ModalSuccess,
   },
   setup() {
     const router = useRouter()
@@ -90,6 +97,8 @@ export default {
       vehicle: {},
       directions: [],
       loading: false,
+      modal: false,
+      closeModal: () => (app.modal = false),
       fetchVehicle: async () => {
         app.vehicle = await getVehicle(route.params.vehicle)
       },
@@ -101,6 +110,7 @@ export default {
         app.loading = true
         await updateVehicle({ vehicleId: route.params.vehicle, vehicle: app.vehicle })
         app.loading = false
+        app.modal = true
       },
       fetchInitialData: async () => {
         app.loading = true
@@ -108,7 +118,7 @@ export default {
         await app.fetchDirections()
         app.loading = false
       },
-      goToVehicleDetails: () => router.push({ name: 'vehicleDetails', params: { vehicle: route.params.vehicle }}),
+      goToVehicleDetails: () => router.push({ name: 'VehicleDetail', params: { vehicle: route.params.vehicle }}),
     })
 
     app.fetchInitialData()
