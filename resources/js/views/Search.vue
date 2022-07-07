@@ -3,9 +3,9 @@
   <main>
     <search-bar
       id="search-bar"
-      v-model="app.economicNumber"
+      v-model="app.inventoryNumber"
       @search="app.fetchVehicles"
-      placeholder="Buscar por número economico"
+      placeholder="Buscar por número de inventario"
     />
     <div class="px-6 sm:px-16 py-12">
       <redirect-to-back :route="app.goToHome" />
@@ -59,7 +59,7 @@ export default {
     const router = useRouter()
 
     const app = reactive({
-      economicNumber: '',
+      inventoryNumber: '',
       vehicles: {
         data: [],
         current_page: 1,
@@ -68,7 +68,7 @@ export default {
       loading: false,
       fetchVehicles: async (page = 1) => {
         app.loading = true
-        app.vehicles = await searchVehicles({ economicNumber: app.economicNumber, page })
+        app.vehicles = await searchVehicles({ inventoryNumber: app.inventoryNumber, page })
         app.loading = false
       },
       goToVehicleDetails: (vehicle) => router.push({ name: 'VehicleDetail', params: { vehicle }}),

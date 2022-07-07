@@ -2,8 +2,8 @@ import { post, get, put } from 'axios'
 import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
 
-const searchVehicles = ({ economicNumber, page }) => new Promise((resolve, reject) =>
-  get(`${API}/api/vehicles?page=${page}${economicNumber ? '&economic_number='+economicNumber : ''}`, {
+const searchVehicles = ({ inventoryNumber, page }) => new Promise((resolve, reject) =>
+  get(`${API}/api/vehicles?page=${page}${inventoryNumber ? '&inventory_number='+inventoryNumber : ''}`, {
     headers: {
       Authorization: `Bearer ${JWT()}`,
     },
