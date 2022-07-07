@@ -50,7 +50,7 @@
 
 <script>
 import { computed, reactive } from 'vue'
-import { authenticate, me } from './../api/authenticate'
+import { authenticate } from './../api/authenticate'
 import { useRouter } from 'vue-router'
 import ButtonBase from './../components/ButtonBase.vue'
 import InputBase from './../components/InputBase.vue'
@@ -76,7 +76,6 @@ export default {
         app.loading = true
         app.error = false
         await authenticate(app.credentials)
-        await me()
         router.push({ name: 'Home' })
       } catch (error) {
         app.error = true

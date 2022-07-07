@@ -1,11 +1,16 @@
 import { post, get } from 'axios'
-import { JWT } from '../helpers/localStorage'
+import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
+import { getCurrentTimestamp } from './../helpers/DateTime'
 
 const authenticate = (credentials) => new Promise((resolve, reject) => {
   post(`${API}/api/auth/login`, credentials)
     .then(({ data }) => {
-      localStorage.setItem('oficios-jwt', JSON.stringify(data))
+      localStorage.setItem('nr-vehicles-jwt', JSON.stringify({
+        expiredAt: (data.expires_in * 1000) + getCurrentTimestamp(),
+        accessToken: data.access_token,
+        user: data.user,
+      }))
       resolve(data)
     })
     .catch(({ response }) => reject(response))
@@ -17,10 +22,7 @@ const me = () => new Promise((resolve, reject) => {
       Authorization: `Bearer ${JWT()}`,
     },
   })
-    .then(({ data }) => {
-      localStorage.setItem('oficios-me', JSON.stringify(data))
-      resolve(data)
-    })
+    .then(({ data }) => resolve(data))
     .catch(({ response }) => reject(response))
 })
 
@@ -31,8 +33,7 @@ const logout = () => new Promise((resolve, reject) => {
     },
   })
     .then(({ data }) => {
-      localStorage.removeItem('oficios-me')
-      localStorage.removeItem('oficios-jwt')
+      localStorage.removeItem('nr-vehicles-jwt')
       resolve(data)
     })
     .catch(({ response }) => reject(response))
