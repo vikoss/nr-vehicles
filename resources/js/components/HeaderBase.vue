@@ -1,21 +1,30 @@
 <template>
-  <header class="bg-wine h-20 flex flex-col justify-center">
+  <header class="bg-white h-20 flex flex-col justify-center shadow-md">
     <ul class="flex justify-between">
       <li class="ml-11">
         <router-link :to="{ name: 'Home' }">
-          <img src="./../../../public/images/logo-nr.png" alt="logo" class="h-16">
+          <img src="./../assets/images/anr.png" alt="logo" class="h-12 lg:h-14">
         </router-link>
       </li>
       <li class="mr-11">
         <div class="flex justify-center h-full relative">
           <div class="flex items-center">
-            <p class="mr-3 text-white text-sm sm:text-base font-light">
-              {{ user.email }}
+            <p class="mr-3 text-black text-sm sm:text-base font-normal">
+              {{ user.nick_name }}
             </p>
-            <arrow-bottom-svg class="mt-1 cursor-pointer w-4 h-4" @click="app.showWindowLogOut = !app.showWindowLogOut" />
+            <arrow-bottom-svg
+              hex-color="#333333"
+              class="mt-1 cursor-pointer w-4 h-4"
+              @click="app.showWindowLogOut = !app.showWindowLogOut"
+            />
           </div>
           <div v-show="app.showWindowLogOut" class="text-right absolute top-12 right-0">
-            <input class="bg-white px-4 py-1 text-base hover:bg-gray-300 cursor-pointer rounded-sm shadow-lg shadow-wine" type="button" value="Salir" @click="logOut">
+            <input
+              class="bg-white px-4 py-1 text-base hover:bg-gray-300 hover:border-b cursor-pointer rounded-sm shadow-lg"
+              type="button"
+              value="Salir"
+              @click="logOut"
+            >
           </div>
         </div>
       </li>
