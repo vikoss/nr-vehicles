@@ -1,10 +1,10 @@
 <template>
   <header-base />
   <main class="px-6 sm:px-16 py-12">
-    <redirect-to-back :route="app.goToVehicleShow" />
+    <redirect-to-back :route="app.goToVehicleIndex" />
     <title-bar
-      :title="app.vehicle.name"
-      subtitle="Consulta la información del vehiculo. De ser necesario puedes cargar documentación."
+      :title="app.vehicle.name ? app.vehicle.name : 'Nuevo vehiculo'"
+      subtitle="Ingresa los datos para registrar un nuevo vehiculo."
     />
     <input-base
       id="inventory_number"
@@ -48,36 +48,26 @@
       :options="app.directions"
       v-model="app.vehicle.direction_id"
     />
-
-    <div class="mt-10 lg:flex">
-      <button-base
-        class="sm:max-w-sm mx-auto text-wine mb-5 lg:mb-0"
-        style="background-color: #ffffff;"
-        label="Cancelar"
-        @click="app.goToVehicleShow"
-      />
-      <button-base
-        class="sm:max-w-sm mx-auto"
-        label="Actualizar"
-        :loading="app.loading"
-        @click="app.saveVehicle"
-        :disabled="false"
-      />
-    </div>
-
+    <button-base
+      class="sm:max-w-sm mx-auto mt-8"
+      label="Registrar"
+      :loading="app.loading"
+      @click="app.saveVehicle"
+      :disabled="false"
+    />
     <loading v-show="app.loading" />
     <modal-success
       :show="app.modal"
       :closed="app.closeModal"
-      message="Actualización de forma exitosa."
+      message="Vehiculo registrado de forma exitosa."
     />
   </main>
 </template>
 
 <script>
 import { reactive } from 'vue'
-import { useRoute, useRouter } from 'vue-router'
-import { getVehicle, updateVehicle } from '../../api/vehicles'
+import { useRouter } from 'vue-router'
+import { storeVehicle } from '../../api/vehicles'
 import { getDirections } from './../../api/directions'
 import HeaderBase from '../../components/HeaderBase.vue'
 import RedirectToBack from '../../components/RedirectToBack.vue'
@@ -100,20 +90,16 @@ export default {
     ModalSuccess,
   },
   setup() {
-    const router = useRouter()
-    const route = useRoute()
 
     const app = reactive({
+      router: useRouter(),
       vehicle: {},
       directions: [],
       loading: false,
       modal: false,
       closeModal: () => {
         app.modal = false
-        app.goToVehicleShow()
-      },
-      fetchVehicle: async () => {
-        app.vehicle = await getVehicle(route.params.vehicle)
+        app.goToVehicleIndex()
       },
       fetchDirections: async () => {
         const directions = await getDirections()
@@ -121,20 +107,19 @@ export default {
       },
       saveVehicle: async () => {
         app.loading = true
-        await updateVehicle({ vehicleId: route.params.vehicle, vehicle: app.vehicle })
+        await storeVehicle(app.vehicle)
         app.loading = false
         app.modal = true
       },
-      fetchInitialData: async () => {
+      init: async () => {
         app.loading = true
-        await app.fetchVehicle()
         await app.fetchDirections()
         app.loading = false
       },
-      goToVehicleShow: () => router.push({ name: 'VehicleShow', params: { vehicle: route.params.vehicle }}),
+      goToVehicleIndex: () => app.router.push({ name: 'VehicleIndex' }),
     })
 
-    app.fetchInitialData()
+    app.init()
 
     return { app }
   },

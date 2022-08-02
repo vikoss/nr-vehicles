@@ -55,21 +55,24 @@
       v-model="app.vehicle.direction_id"
       disabled
     />
-    <button-base
-      class="sm:max-w-sm mx-auto text-wine border-solid border-wine mt-8"
-      style="background-color: #ffffff; border-width: 3px;"
-      label="Editar"
-      :loading="false"
-      @click="app.goToVehicleUpdate"
-      :disabled="false"
-    />
-    <button-base
-      class="sm:max-w-sm mx-auto mt-6"
-      label="Consultar documentación"
-      :loading="false"
-      @click="app.goToUploadVehicleDocuments"
-      :disabled="false"
-    />
+
+    <div class="mt-10 lg:flex">
+      <button-base
+        class="sm:max-w-sm mx-auto text-wine mb-5 lg:mb-0"
+        style="background-color: #ffffff;"
+        label="Editar"
+        :loading="false"
+        @click="app.goToVehicleUpdate"
+        :disabled="false"
+      />
+      <button-base
+        class="sm:max-w-sm mx-auto"
+        label="Consultar documentación"
+        :loading="false"
+        @click="app.goToUploadVehicleDocuments"
+        :disabled="false"
+      />
+    </div>
   </main>
 </template>
 
@@ -110,7 +113,7 @@ export default {
       },
       goToUploadVehicleDocuments: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
       goToVehicleUpdate: () => router.push({ name: 'VehicleUpdate', params: { vehicle: route.params.vehicle }}),
-      goToVehicles: () => router.push({ name: 'Search' }),
+      goToVehicles: () => router.push({ name: 'VehicleIndex' }),
       vehicle: {},
       fetchInitialData: async () => {
         app.loading = true

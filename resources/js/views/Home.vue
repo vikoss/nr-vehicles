@@ -6,7 +6,7 @@
         <card-base
           label="Vehiculos"
           description="Realizar busqueda."
-          :redirect-to="{ name: 'Search' }"
+          :redirect-to="{ name: 'VehicleIndex' }"
         />
       </div>
       <div class="col-span-1">

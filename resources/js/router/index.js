@@ -12,14 +12,19 @@ const routes = [
     component: () => import ('./../views/Login.vue'),
   },
   {
-    path: '/busqueda',
-    name: 'Search',
-    component: () => import ('./../views/Search.vue'),
+    path: '/vehiculos',
+    name: 'VehicleIndex',
+    component: () => import ('./../views/Vehicle/Index.vue'),
+  },
+  {
+    path: '/vehiculos/crear',
+    name: 'VehicleCreate',
+    component: () => import ('./../views/Vehicle/Create.vue'),
   },
   {
     path: '/vehiculos/:vehicle',
-    name: 'VehicleDetail',
-    component: () => import ('./../views/Vehicle/Details.vue'),
+    name: 'VehicleShow',
+    component: () => import ('./../views/Vehicle/Show.vue'),
   },
   {
     path: '/vehiculos/:vehicle/actualizar',
@@ -29,11 +34,11 @@ const routes = [
   {
     path: '/vehiculos/:vehicle/documentos',
     name: 'VehicleDocuments',
-    component: () => import ('./../views/Vehicle/Documents.vue'),
+    component: () => import ('./../views/Vehicle/Document/Index.vue'),
   },
   {
     path: '/vehiculos/:vehicle/agregar-documentos',
-    name: 'UploadDocuments',
+    name: 'VehicleUploadDocuments',
     component: () => import ('./../views/Document/Upload.vue'),
   },
   {

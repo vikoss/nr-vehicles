@@ -1,7 +1,7 @@
 <template>
   <header-base />
   <main class="px-6 sm:px-16 py-12">
-    <redirect-to-back :route="app.goToVehicleDetails" />
+    <redirect-to-back :route="app.goToVehicleShow" />
 
     <title-bar
       :title="app.vehicle.name"
@@ -30,7 +30,7 @@
       :show="app.modal"
       :closed="app.closeModal"
       :action="app.destroyDocument"
-      message="Desea elimiar el documento?"
+      message="¿Desea elimiar el documento?"
     />
   </main>
 </template>
@@ -38,18 +38,18 @@
 <script>
 import { reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getVehicle } from '../../api/vehicles'
-import { deleteDocument } from '../../api/documents'
-import { getDocuments } from '../../api/documents'
-import HeaderBase from './../../components/HeaderBase.vue'
-import ButtonBase from './../../components/ButtonBase.vue'
-import ImageUploader from '../../components/ImageUploader.vue'
-import ImageViewer from '../../components/ImageViewer.vue'
-import RedirectToBack from '../../components/RedirectToBack.vue'
-import TitleBar from '../../components/TitleBar.vue'
-import ModalSuccess from '../../components/ModalSuccess.vue'
-import ModalConfirm from '../../components/ModalConfirm.vue'
-import Loading from '../../components/LoadingBalls.vue'
+import { getVehicle } from './../../../api/vehicles'
+import { deleteDocument } from './../../../api/documents'
+import { getDocuments } from './../../../api/documents'
+import HeaderBase from './../../../components/HeaderBase.vue'
+import ButtonBase from './../../../components/ButtonBase.vue'
+import ImageUploader from './../../../components/ImageUploader.vue'
+import ImageViewer from './../../../components/ImageViewer.vue'
+import RedirectToBack from './../../../components/RedirectToBack.vue'
+import TitleBar from './../../../components/TitleBar.vue'
+import ModalSuccess from './../../../components/ModalSuccess.vue'
+import ModalConfirm from './../../../components/ModalConfirm.vue'
+import Loading from './../../../components/LoadingBalls.vue'
 
 export default {
   components: {
@@ -74,8 +74,8 @@ export default {
       vehicle: {},
       documentIdToDelete: null,
       closeModal: () => (app.modal = false),
-      goToUploadDocuments: () => router.push({ name: 'UploadDocuments', params: { vehicle: route.params.vehicle }}),
-      goToVehicleDetails: () => router.push({ name: 'VehicleDetail', params: { vehicle: route.params.vehicle }}),
+      goToUploadDocuments: () => router.push({ name: 'VehicleUploadDocuments', params: { vehicle: route.params.vehicle }}),
+      goToVehicleShow: () => router.push({ name: 'VehicleShow', params: { vehicle: route.params.vehicle }}),
       fetchVehicle: async () => {
         app.vehicle = await getVehicle(route.params.vehicle)
       },
