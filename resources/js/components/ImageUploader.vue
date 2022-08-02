@@ -12,7 +12,7 @@
       <div class="hidden lg:w-1/2 lg:block">
         <button-base
           class="max-w-xs mx-auto text-wine border-solid border-wine"
-          style="background-color: #ffffff; border-width: 3px;"
+          style="background-color: #ffffff;"
           label="Cargar archivos"
           :disabled="disabledMainButton"
           @click="onClickButton"
@@ -42,7 +42,7 @@
     <div class="mt-2 lg:hidden">
       <button-base
         class="max-w-xs ml-0 mx-auto border-solid border-wine text-wine"
-        style="background-color: #ffffff; border-width: 3px;"
+        style="background-color: #ffffff;"
         label="Cargar archivos"
         :disabled="disabledMainButton"
         @click="onClickButton"

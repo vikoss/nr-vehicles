@@ -5,8 +5,8 @@
       :id="id"
       :name="id"
       class="border rounded h-11 pl-3.5 pr-8 w-full mt-1 border-wine border-solid outline-none
-        text-base text-black appearance-none bg-no-repeat bg-white
-        disabled:font-medium focus:border-2 focus:shadow disabled:bg-gray-300
+        text-base text-black appearance-none bg-no-repeat bg-white cursor-pointer
+        disabled:font-medium focus:border-2 focus:shadow disabled:bg-gray-300 disabled:cursor-default
         disabled:border-gray-100 disabled:text-gray disabled:opacity-100
       "
       :style="{ 'background-image': `url(${app.svg})` }"

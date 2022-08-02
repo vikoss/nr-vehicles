@@ -14,7 +14,7 @@
       <div class="flex justify-center">
         <button-base
           class="max-w-xs mr-2 text-wine border-solid border-wine"
-          style="background-color: #ffffff; border-width: 3px;"
+          style="background-color: #ffffff;"
           label="No"
           @click="closed"
         />
