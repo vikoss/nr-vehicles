@@ -32,4 +32,14 @@ const updateVehicle = ({ vehicleId, vehicle }) => new Promise((resolve, reject) 
   .catch(({ response }) => reject(response))
   )
 
-export { searchVehicles, getVehicle, updateVehicle }
+const storeVehicle = (vehicle) => new Promise((resolve, reject) =>
+  post(`${API}/api/vehicles`, vehicle, {
+    headers: {
+      Authorization: `Bearer ${JWT()}`,
+    },
+  })
+  .then(({ data }) => resolve(data))
+  .catch(({ response }) => reject(response))
+  )
+
+export { searchVehicles, getVehicle, updateVehicle, storeVehicle }
