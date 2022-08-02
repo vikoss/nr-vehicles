@@ -35,6 +35,7 @@ Route::get('/vehicles/{vehicle}/documents', [VehicleDocumentsController::class, 
 Route::get('/vehicles', [VehicleController::class, 'index']);
 Route::get('/vehicles/{vehicle}', [VehicleController::class, 'show']);
 Route::put('/vehicles/{vehicle}', [VehicleController::class, 'update']);
+Route::post('/vehicles', [VehicleController::class, 'store']);
 Route::get('/document-types', [DocumentTypeController::class, 'index']);
 Route::delete('/documents/{document}', [DocumentController::class, 'destroy']);
 Route::get('/directions', [DirectionController::class, 'index']);

@@ -21,4 +21,9 @@ class VehicleController extends Controller
     {
         return $vehicle->update($request->all());
     }
+
+    public function store(Request $request)
+    {
+        return Vehicle::create($request->all());
+    }
 }
