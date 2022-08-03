@@ -18,7 +18,6 @@
         :key="index"
         :document-index="index"
         :document-name="document.name"
-        :document-technical-name="document.name"
         :documents="document?.tempFiles"
         @change="app.loadImages"
       />
@@ -35,7 +34,7 @@
     <modal-success
       :show="app.modal"
       :closed="app.closeModal"
-      message="Tu documentación se ha enviado exitosamente."
+      message="La documentación se ha enviado exitosamente."
     />
   </main>
 </template>
@@ -98,7 +97,7 @@ export default {
         await Promise.all(docs.map(async (document, index) => {
           let { publicUrl } = await uploadFile({ path: `vehicles/${route.params.vehicle}/documents/${document.typeId}`, file: document.file })
           console.log(publicUrl)
-          documents.push({ url: publicUrl, description: '', document_type_id: document.typeId })
+          documents.push({ url: publicUrl, description: document.description, document_type_id: document.typeId })
         }))
         console.log(documents)
 
@@ -109,7 +108,7 @@ export default {
         console.log(app.documents)
         app.documents.forEach((document, index) => {
           document?.tempFiles?.forEach((image, index) => {
-            documents.push({ typeId: document.id, file: image.file })
+            documents.push({ typeId: document.id, file: image.file, description: (image.comment || '') })
           })
         })
 
