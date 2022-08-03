@@ -2,7 +2,7 @@
   <button
     type="button"
     class="bg-wine text-white block h-11 w-full font-bold text-base rounded-md cursor-pointer
-      disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray border-wine border-solid"
+      disabled:cursor-not-allowed disabled:bg-gray-200 disabled:text-gray disabled:border-gray-200 border-wine border-solid"
     style="border-width: 3px;"
   >
     <svg
