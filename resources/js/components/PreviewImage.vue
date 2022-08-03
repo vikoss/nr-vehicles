@@ -26,10 +26,14 @@
           title="Zoom"
           src="./../assets/svg/expandImage.svg"
           alt="expand image"
-          @click="app.toggleModal(true)"
+          @click="app.toggleModal({ modal: 'preview', value: true })"
         >
+        <pencil-svg
+          class="h-6 w-6 cursor-pointer"
+          title="Agregar comentario"
+          @click="app.toggleModal({ modal: 'comment', value: true })"
+        />
         <img
-          v-show="!hideTrashIcon"
           class="cursor-pointer"
           title="Eliminar"
           src="./../assets/svg/deleteItem.svg"
@@ -39,10 +43,17 @@
       </div>
     </div>
     <modal-preview-image
-      :show="app.modal"
+      :show="app.modals.preview"
       :url-file="img"
       :document-type="documentType"
-      @closed="app.toggleModal(false)"
+      @closed="app.toggleModal({ modal: 'preview', value: false })"
+    />
+    <modal-comment
+      :show="app.modals.comment"
+      message="Agrega un comentario o nota sobre el documento."
+      :comment="comment"
+      :closed="() => app.toggleModal({ modal: 'comment', value: false })"
+      @handle-comment="app.handleComment"
     />
   </div>
 </template>
@@ -51,10 +62,12 @@
 import { reactive } from 'vue'
 import PreviewDefaultImage from './../assets/svg/previewImage.svg'
 import ModalPreviewImage from './ModalPreviewImage.vue'
+import PencilSvg from './../svg/Pencil.vue'
+import ModalComment from './ModalComment.vue'
 
 export default {
   name: 'PreviewImage',
-  components: { ModalPreviewImage },
+  components: { ModalPreviewImage, PencilSvg, ModalComment },
   props: {
     img: {
       type: String,
@@ -64,28 +77,27 @@ export default {
       type: Number,
       default: 0,
     },
-    hideTrashIcon: {
-      type: Boolean,
-      default: false,
-    },
     documentType: {
       type: String,
       default: 'image/png',
     },
+    comment: {
+      type: String,
+      default: '',
+    },
   },
-  emits: ['deleteImage'],
+  emits: ['deleteImage', 'handleComment'],
   setup(props, { emit }) {
+
     const app = reactive({
       modal: false,
-      toggleModal: (status) => (app.modal = status),
+      modals: {
+        comment: false,
+        preview: false,
+      },
+      toggleModal: ({ modal, value }) => (app.modals[modal] = value),
       deleteImage: () => emit('deleteImage', props.documentIndex),
-      /* showPreview: () => {
-        if (props.documentType === 'pdf') {
-          wind
-          return
-        }
-        app.toggleModal(true)
-      }, */
+      handleComment: (comment) => emit('handleComment', comment),
     })
 
     return { app, PreviewDefaultImage }
