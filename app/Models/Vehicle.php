@@ -39,4 +39,19 @@ class Vehicle extends Model
     {
         return $this->belongsTo(Direction::class);
     }
+
+    /**
+     * Scope a query to filter by inventory number.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return void
+     */
+    public function scopeFilterByInventoryNumber($query, $inventoryNumber)
+    {
+        if ($inventoryNumber) {
+            return $query->where('inventory_number', 'like', "%{$inventoryNumber}%");
+        }
+
+        return $query;
+    }
 }
