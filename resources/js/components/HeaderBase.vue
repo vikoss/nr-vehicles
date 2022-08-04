@@ -3,7 +3,7 @@
     <ul class="flex justify-between">
       <li class="ml-11">
         <router-link :to="{ name: 'Home' }">
-          <img src="./../assets/images/anr.png" alt="logo" class="h-10 lg:h-12">
+          <img src="./../assets/images/anr.png" alt="logo" class="h-10">
         </router-link>
       </li>
       <li class="mr-11">
