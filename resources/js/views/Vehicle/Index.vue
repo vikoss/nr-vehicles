@@ -35,9 +35,9 @@
       <div v-show="!!app.vehicles.data.length && !app.loading">
         <table-base
           :headers="[
-            { name: 'economic_number', label: 'Economico' },
-            { name: 'name', label: 'Nombre' },
             { name: 'inventory_number', label: 'Inventario' },
+            { name: 'name', label: 'Nombre' },
+            { name: 'economic_number', label: 'Economico' },
           ]"
           :data="app.vehicles.data"
           :action="app.goToVehicleDetails"
