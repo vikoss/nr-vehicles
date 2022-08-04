@@ -9,7 +9,9 @@ class VehicleController extends Controller
 {
     public function index(Request $request)
     {
-        return Vehicle::where('inventory_number', 'like', "%{$request->get('inventory_number')}%")->paginate();
+        return Vehicle::filterByInventoryNumber($request->get('inventory_number'))
+            ->orderBy('inventory_number')
+            ->paginate();
     }
 
     public function show(Vehicle $vehicle)
