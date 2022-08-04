@@ -28,7 +28,7 @@
       label="Agregar documentación"
       :loading="app.loading"
       @click="app.saveDocuments"
-      :disabled="false"
+      :disabled="app.disabled"
     />
 
     <modal-success
@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getVehicle } from '../../api/vehicles'
 import { storeDocument } from '../../api/documents'
@@ -71,6 +71,7 @@ export default {
       modal: false,
       documents: [],
       vehicle: {},
+      disabled: computed(() => !app.documents.some(document => document?.tempFiles?.length)),
       closeModal: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
       fetchVehicle: async () => {
         app.vehicle = await getVehicle(route.params.vehicle)
