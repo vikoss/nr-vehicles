@@ -36,6 +36,8 @@
       :closed="app.closeModal"
       message="La documentación se ha enviado exitosamente."
     />
+
+    <loading v-show="app.loading" />
   </main>
 </template>
 
@@ -52,6 +54,7 @@ import ImageUploader from '../../components/ImageUploader.vue'
 import RedirectToBack from '../../components/RedirectToBack.vue'
 import TitleBar from '../../components/TitleBar.vue'
 import ModalSuccess from '../../components/ModalSuccess.vue'
+import Loading from './../../components/LoadingBalls.vue'
 
 export default {
   components: {
@@ -61,6 +64,7 @@ export default {
     RedirectToBack,
     TitleBar,
     ModalSuccess,
+    Loading,
   },
   setup() {
     const route = useRoute()

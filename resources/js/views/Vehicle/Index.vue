@@ -50,7 +50,7 @@
           class="float-right mt-5"
         />
       </div>
-      <loading v-show="app.loading" class="mx-auto mt-10" />
+      <loading v-show="app.loading" />
     </div>
   </main>
 </template>

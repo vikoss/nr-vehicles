@@ -12,7 +12,7 @@
       :data="app.documentTypes"
       :action="app.goDocumentTypeDetails"
     />
-    <loading v-show="app.loading" class="mx-auto mt-10" />
+    <loading v-show="app.loading" />
   </main>
 </template>
 

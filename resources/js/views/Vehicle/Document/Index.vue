@@ -24,7 +24,7 @@
       />
     </div>
 
-    <loading v-show="app.loading" class="mt-10" />
+    <loading v-show="app.loading" />
 
     <modal-confirm
       :show="app.modal"
