@@ -1,9 +1,18 @@
 <template>
   <div>
-    <div style="width: 230px; height: 150px; display: flex; flex-wrap: wrap; align-items: flex-end; justify-content:space-between;" class="mx-auto">
-      <div class="bg-wine ball"></div>
-      <div class="bg-wine ball"></div>
-      <div class="bg-wine ball"></div>
+    <div
+      class="transition-opacity ease-in-out duration-300 pointer-events-auto
+        fixed w-full h-full top-0 left-0
+        flex items-center justify-center"
+    >
+      <div class="absolute w-full h-full opacity-30" style="background-color: currentColor;" />
+      <div class="z-50">
+        <div class="w-60 h-40 flex flex-wrap items-end justify-between">
+          <div class="bg-wine ball"></div>
+          <div class="bg-wine ball"></div>
+          <div class="bg-wine ball"></div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
