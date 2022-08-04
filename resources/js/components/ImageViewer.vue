@@ -108,7 +108,7 @@
               <p class="text-black font-medium text-base">
                 Descripción:
                 <strong class="font-normal text-sm">
-                  {{ document.type }}
+                  {{ document.description }}
                 </strong>
               </p>
             </div>
