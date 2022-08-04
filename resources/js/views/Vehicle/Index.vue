@@ -24,6 +24,14 @@
         class="rounded-md"
         @search="app.fetchVehicles"
       />
+      <div v-show="!app.vehicles.data.length">
+        <div class="flex flex-col items-center mt-20 sm:mt-28">
+          <folder-not-found-svg />
+          <p class="text-lg sm:text-xl opacity-70 mt-6">
+            No se encontraron resultados.
+          </p>
+        </div>
+      </div>
       <div v-show="!!app.vehicles.data.length && !app.loading">
         <table-base
           :headers="[
@@ -59,6 +67,7 @@ import PaginationBase from './../../components/PaginationBase.vue'
 import RedirectToBack from './../../components/RedirectToBack.vue'
 import TitleBar from './../../components/TitleBar.vue'
 import ButtonBase from './../../components/ButtonBase.vue'
+import FolderNotFoundSvg from '../../svg/FolderNotFound.vue'
 
 export default {
   components: {
@@ -70,6 +79,7 @@ export default {
     RedirectToBack,
     TitleBar,
     ButtonBase,
+    FolderNotFoundSvg,
   },
   setup() {
     const router = useRouter()
