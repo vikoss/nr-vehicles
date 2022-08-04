@@ -17,7 +17,7 @@
     >
       <option
         v-if="modelValue === 0"
-        value="{}"
+        value="0"
         disabled
         selected
       >

@@ -61,7 +61,7 @@
         label="Actualizar"
         :loading="app.loading"
         @click="app.saveVehicle"
-        :disabled="false"
+        :disabled="app.disabled"
       />
     </div>
 
@@ -75,7 +75,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { reactive, computed } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
 import { getVehicle, updateVehicle } from '../../api/vehicles'
 import { getDirections } from './../../api/directions'
@@ -104,10 +104,27 @@ export default {
     const route = useRoute()
 
     const app = reactive({
-      vehicle: {},
+      vehicle: {
+        inventory_number: '',
+        name: '',
+        brand: '',
+        model: '',
+        direction_id: 0,
+        economic_number: '',
+        serial_number: '',
+      },
       directions: [],
       loading: false,
       modal: false,
+      disabled: computed(() => !(
+        app.vehicle.inventory_number.trim().length > 2 &&
+        app.vehicle.name.trim().length > 2 &&
+        app.vehicle.brand.trim().length > 2 &&
+        app.vehicle.model.trim().length > 2 &&
+        app.vehicle.economic_number.trim().length > 2 &&
+        app.vehicle.serial_number.trim().length > 2 &&
+        app.vehicle.direction_id
+      )),
       closeModal: () => {
         app.modal = false
         app.goToVehicleShow()

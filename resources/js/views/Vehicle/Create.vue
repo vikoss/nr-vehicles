@@ -48,13 +48,21 @@
       :options="app.directions"
       v-model="app.vehicle.direction_id"
     />
-    <button-base
-      class="sm:max-w-sm mx-auto mt-8"
-      label="Registrar"
-      :loading="app.loading"
-      @click="app.saveVehicle"
-      :disabled="false"
-    />
+    <div class="mt-10 lg:flex">
+      <button-base
+        class="sm:max-w-sm mx-auto text-wine mb-5 lg:mb-0"
+        style="background-color: #ffffff;"
+        label="Cancelar"
+        @click="app.goToVehicleIndex"
+      />
+      <button-base
+        class="sm:max-w-sm mx-auto"
+        label="Registrar"
+        :loading="app.loading"
+        @click="app.saveVehicle"
+        :disabled="app.disabled"
+      />
+    </div>
     <loading v-show="app.loading" />
     <modal-success
       :show="app.modal"
@@ -65,7 +73,7 @@
 </template>
 
 <script>
-import { reactive } from 'vue'
+import { computed, reactive } from 'vue'
 import { useRouter } from 'vue-router'
 import { storeVehicle } from '../../api/vehicles'
 import { getDirections } from './../../api/directions'
@@ -93,10 +101,27 @@ export default {
 
     const app = reactive({
       router: useRouter(),
-      vehicle: {},
+      vehicle: {
+        inventory_number: '',
+        name: '',
+        brand: '',
+        model: '',
+        direction_id: 0,
+        economic_number: '',
+        serial_number: '',
+      },
       directions: [],
       loading: false,
       modal: false,
+      disabled: computed(() => !(
+        app.vehicle.inventory_number.trim().length > 2 &&
+        app.vehicle.name.trim().length > 2 &&
+        app.vehicle.brand.trim().length > 2 &&
+        app.vehicle.model.trim().length > 2 &&
+        app.vehicle.economic_number.trim().length > 2 &&
+        app.vehicle.serial_number.trim().length > 2 &&
+        app.vehicle.direction_id
+      )),
       closeModal: () => {
         app.modal = false
         app.goToVehicleIndex()
