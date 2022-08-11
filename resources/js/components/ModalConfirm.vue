@@ -2,11 +2,7 @@
   <modal-base :show="show" @closed="closed">
     <div class="py-12 pb-8">
       <div class="flex flex-col items-center">
-        <img
-          src="./../assets/svg/success.svg"
-          alt="Carpeta"
-          style="width: 152px;"
-        >
+        <success-svg />
         <h5 class="text-base mb-14 mt-12 text-center" :style="'max-width: 587px; min-width: ' + minWidth ">
           {{ message }}
         </h5>
@@ -31,11 +27,13 @@
 <script>
 import ModalBase from './ModalBase.vue'
 import ButtonBase from './ButtonBase.vue'
+import SuccessSvg from '../svg/Success.vue'
 
 export default {
   components: {
     ModalBase,
     ButtonBase,
+    SuccessSvg,
   },
   props: {
     show: {

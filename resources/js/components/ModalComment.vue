@@ -2,11 +2,7 @@
   <modal-base :show="show" @closed="closed">
     <div class="py-12 pb-8">
       <div class="flex flex-col items-center md:px-10 lg:px-40">
-        <img
-          src="./../assets/svg/success.svg"
-          alt="Carpeta"
-          style="width: 152px;"
-        >
+        <success-svg />
         <h5 class="text-base my-4 font-semibold">
           {{ message }}
         </h5>
@@ -34,6 +30,7 @@
 import ModalBase from './ModalBase.vue'
 import ButtonBase from './ButtonBase.vue'
 import TextAreaBase from './TextAreaBase.vue'
+import SuccessSvg from '../svg/Success.vue'
 import { computed, reactive } from 'vue'
 
 export default {
@@ -41,6 +38,7 @@ export default {
     ModalBase,
     ButtonBase,
     TextAreaBase,
+    SuccessSvg,
   },
   props: {
     show: {
