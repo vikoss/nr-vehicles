@@ -5,7 +5,7 @@
 
     <title-bar title="Anexo de documentación">
       <template v-slot:subtitle>
-        Agregar documentacion al vehiculo
+        Agregar documentacion al vehículo
         <strong class="lowercase">
           {{ app.vehicle.name }}
         </strong>.

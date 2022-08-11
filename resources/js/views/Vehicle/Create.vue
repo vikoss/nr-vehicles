@@ -3,8 +3,8 @@
   <main class="px-6 sm:px-16 py-12">
     <redirect-to-back :route="app.goToVehicleIndex" />
     <title-bar
-      :title="app.vehicle.name ? app.vehicle.name : 'Nuevo vehiculo'"
-      subtitle="Ingresa los datos para registrar un nuevo vehiculo."
+      :title="app.vehicle.name ? app.vehicle.name : 'Nuevo vehículo'"
+      subtitle="Ingresa los datos para registrar un nuevo vehículo."
     />
     <input-base
       id="inventory_number"

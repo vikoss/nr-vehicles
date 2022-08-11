@@ -4,7 +4,7 @@
     <redirect-to-back />
     <title-bar
       title="Tipos de documentos"
-      subtitle="Consulta la información del vehiculo. De ser necesario puedes cargar documentación."
+      subtitle="Consulta la información del vehículo. De ser necesario puedes cargar documentación."
     />
     <table-base
       v-show="!!app.documentTypes.length && !app.loading"

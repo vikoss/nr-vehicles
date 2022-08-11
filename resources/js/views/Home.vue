@@ -12,7 +12,7 @@
       <div class="col-span-1">
         <card-base
           label="Catálogo de documentos."
-          description="Gestiona el catálogo de tipo de documentos para los vehiculos."
+          description="Gestiona el catálogo de tipo de documentos para los vehículos."
           :redirect-to="{ name: 'DocumentTypes' }"
         />
       </div>

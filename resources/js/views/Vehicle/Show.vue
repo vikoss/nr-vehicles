@@ -4,7 +4,7 @@
     <redirect-to-back :route="app.goToVehicles" />
     <title-bar
       :title="app.vehicle.name"
-      subtitle="Consulta la información del vehiculo. De ser necesario puedes cargar documentación."
+      subtitle="Consulta la información del vehículo. De ser necesario puedes cargar documentación."
     />
     <input-base
       id="inventory_number"
