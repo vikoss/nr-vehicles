@@ -33,7 +33,7 @@
     <input-base
       id="economic_number"
       v-model="app.vehicle.economic_number"
-      label="Número economico:"
+      label="Número económico:"
       class="mb-2"
     />
     <input-base
