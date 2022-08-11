@@ -92,10 +92,22 @@
         >
           <div class="bg-gray-200 w-full h-72 md:h-32 md:w-28 flex justify-center items-center cursor-pointer" @click="app.changeMainImageAndOpenModal(index)">
             <img
+              v-show="!document.url.includes('pdf')"
               class="max-w-full h-auto max-h-full"
               :src="document.url"
               :alt="document.description"
             >
+            <div v-show="document.url.includes('pdf')" class="w-11/12">
+              <div
+                class="h-32"
+                style="position: relative; overflow: hidden; width: 100%;"
+              >
+                <iframe
+                  style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"
+                  :src="document.url"
+                />
+              </div>
+            </div>
           </div>
           <div class="flex justify-between">
             <div>

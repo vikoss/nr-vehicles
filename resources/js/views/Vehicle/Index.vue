@@ -119,4 +119,10 @@ export default {
 #button-add-vehicle:hover {
   background-color: #e0e2e0;
 }
+@media (max-width: 640px) {
+  #button-add-vehicle {
+    border-color: #e0e2e0;
+    border-width: 1px;
+  }
+}
 </style>
