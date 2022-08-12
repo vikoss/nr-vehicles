@@ -26,7 +26,7 @@
         @search="app.fetchVehicles"
       />
       <div v-show="!app.vehicles.data.length">
-        <div class="flex flex-col items-center mt-20 sm:mt-28">
+        <div class="flex flex-col items-center mt-20">
           <folder-not-found-svg />
           <p class="text-lg sm:text-xl opacity-70 mt-6">
             No se encontraron resultados.
