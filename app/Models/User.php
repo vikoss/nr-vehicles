@@ -44,15 +44,6 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
-     * The model's default values for attributes.
-     *
-     * @var array
-     */
-    protected $attributes = [
-        'delayed' => false,
-    ];
-
-    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed

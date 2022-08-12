@@ -31,7 +31,7 @@ class UserSeeder extends Seeder
                 'employee_id'   => $user['employee_id'],
             ]);
 
-            $user->attach(Role::all());
+            $user->roles()->attach(Role::all());
         });
     }
 }
