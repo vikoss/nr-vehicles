@@ -32,4 +32,13 @@ const isAuthenticated = () => {
   return getCurrentTimestamp() < expiredAt()
 }
 
-export { currentUser, JWT, expiredAt, isAuthenticated }
+const userRoles = () => {
+  const user = currentUser()
+  if (!user) {
+    return []
+  }
+
+  return user.roles.map(role => role.name)
+}
+
+export { currentUser, JWT, expiredAt, isAuthenticated, userRoles }
