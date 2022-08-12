@@ -15,6 +15,14 @@
         :documents="app.documents"
         @delete="app.showModalConfirm"
       />
+      <div v-show="!app.documents.length">
+        <div class="flex flex-col items-center mt-20">
+          <folder-not-found-svg />
+          <p class="text-lg sm:text-xl opacity-70 mt-6">
+            Aun no tiene documentación.
+          </p>
+        </div>
+      </div>
       <button-base
         v-show="app.userRoles.includes('document-store')"
         class="sm:max-w-sm mx-auto mt-8"
@@ -52,6 +60,7 @@ import ModalSuccess from './../../../components/ModalSuccess.vue'
 import ModalConfirm from './../../../components/ModalConfirm.vue'
 import Loading from './../../../components/LoadingBalls.vue'
 import { userRoles as roles } from './../../../helpers/LocalStorage'
+import FolderNotFoundSvg from '../../../svg/FolderNotFound.vue'
 
 export default {
   components: {
@@ -64,6 +73,7 @@ export default {
     ImageViewer,
     ModalConfirm,
     Loading,
+    FolderNotFoundSvg,
   },
   setup() {
     const route = useRoute()
