@@ -44,6 +44,15 @@ class User extends Authenticatable implements JWTSubject
     ];
 
     /**
+     * The model's default values for attributes.
+     *
+     * @var array
+     */
+    protected $attributes = [
+        'delayed' => false,
+    ];
+
+    /**
      * Get the identifier that will be stored in the subject claim of the JWT.
      *
      * @return mixed
@@ -51,6 +60,7 @@ class User extends Authenticatable implements JWTSubject
     public function getJWTIdentifier() {
         return $this->getKey();
     }
+
     /**
      * Return a key value array, containing any custom claims to be added to the JWT.
      *
@@ -58,5 +68,13 @@ class User extends Authenticatable implements JWTSubject
      */
     public function getJWTCustomClaims() {
         return [];
+    }
+
+    /**
+     * The roles that belong to the user.
+     */
+    public function roles()
+    {
+        return $this->belongsToMany(Role::class);
     }
 }
