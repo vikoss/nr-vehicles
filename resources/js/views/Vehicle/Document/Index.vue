@@ -16,6 +16,7 @@
         @delete="app.showModalConfirm"
       />
       <button-base
+        v-show="app.userRoles.includes('document-store')"
         class="sm:max-w-sm mx-auto mt-8"
         :label="!!app.documents.length ? 'Agregar más documentación' : 'Agregar documentación'"
         :loading="app.loading"
@@ -50,6 +51,7 @@ import TitleBar from './../../../components/TitleBar.vue'
 import ModalSuccess from './../../../components/ModalSuccess.vue'
 import ModalConfirm from './../../../components/ModalConfirm.vue'
 import Loading from './../../../components/LoadingBalls.vue'
+import { userRoles as roles } from './../../../helpers/LocalStorage'
 
 export default {
   components: {
@@ -72,6 +74,7 @@ export default {
       modal: false,
       documents: [],
       vehicle: {},
+      userRoles: roles(),
       documentIdToDelete: null,
       closeModal: () => (app.modal = false),
       goToUploadDocuments: () => router.push({ name: 'VehicleUploadDocuments', params: { vehicle: route.params.vehicle }}),

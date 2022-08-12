@@ -58,6 +58,7 @@
 
     <div class="mt-10 lg:flex">
       <button-base
+        v-show="app.userRoles.includes('vehicle-update')"
         class="sm:max-w-sm mx-auto text-wine mb-5 lg:mb-0"
         style="background-color: #ffffff;"
         label="Editar"
@@ -88,6 +89,7 @@ import ButtonBase from '../../components/ButtonBase.vue'
 import TitleBar from '../../components/TitleBar.vue'
 import SelectBase from '../../components/SelectBase.vue'
 import Loading from '../../components/LoadingBalls.vue'
+import { userRoles as roles } from './../../helpers/LocalStorage'
 
 export default {
   components: {
@@ -115,6 +117,7 @@ export default {
       goToVehicleUpdate: () => router.push({ name: 'VehicleUpdate', params: { vehicle: route.params.vehicle }}),
       goToVehicles: () => router.push({ name: 'VehicleIndex' }),
       vehicle: {},
+      userRoles: roles(),
       fetchInitialData: async () => {
         app.loading = true
         await app.fetchVehicle()

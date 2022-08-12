@@ -87,6 +87,7 @@ import TitleBar from '../../components/TitleBar.vue'
 import SelectBase from '../../components/SelectBase.vue'
 import Loading from '../../components/LoadingBalls.vue'
 import ModalSuccess from '../../components/ModalSuccess.vue'
+import { userRoles as roles } from './../../helpers/LocalStorage'
 
 export default {
   components: {
@@ -113,6 +114,7 @@ export default {
         economic_number: '',
         serial_number: '',
       },
+      userRoles: roles(),
       directions: [],
       loading: false,
       modal: false,
@@ -143,6 +145,9 @@ export default {
         app.modal = true
       },
       fetchInitialData: async () => {
+        if (!app.userRoles.includes('vehicle-update')) {
+          return router.go(-1)
+        }
         app.loading = true
         await app.fetchVehicle()
         await app.fetchDirections()

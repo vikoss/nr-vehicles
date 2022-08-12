@@ -39,7 +39,7 @@
             </strong>
           </p>
         </div>
-        <div class="pl-2 pt-1">
+        <div v-show="app.userRoles.includes('document-destroy')" class="pl-2 pt-1">
           <img
             src="./../assets/svg/deleteItem.svg"
             alt="Elimiar documento"
@@ -124,7 +124,7 @@
                 </strong>
               </p>
             </div>
-            <div class="pl-2 pt-1">
+            <div v-show="app.userRoles.includes('document-destroy')" class="pl-2 pt-1">
               <img
                 src="./../assets/svg/deleteItem.svg"
                 alt="Elimiar documento"
@@ -153,6 +153,7 @@ import { computed, reactive } from 'vue'
 import ArrowRight from './../svg/ArrowRight.vue'
 import ArrowLeft from './../svg/ArrowLeft.vue'
 import ModalPreviewImage from './ModalPreviewImage.vue'
+import { userRoles as roles } from '../helpers/LocalStorage'
 
 export default {
   name: 'ImageViewer',
@@ -168,6 +169,7 @@ export default {
     const app = reactive({
       mainImage: props.documents[0],
       modal: false,
+      userRoles: roles(),
       mainDocumentMIMEType: computed(() => app.mainImage.url.includes('.pdf') ? 'pdf' : 'image'),
       srcPDF: computed(() => `${app.mainImage.url}#toolbar=0`),
       changeMainImage: (index) => {

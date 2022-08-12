@@ -15,6 +15,7 @@
           class="h-14 w-14 rounded-full text-2xl"
           label="➕️"
           @click="app.goToVehicleCreate"
+          v-show="app.userRoles.includes('vehicle-store')"
         />
       </div>
       <search-bar
@@ -68,6 +69,7 @@ import RedirectToBack from './../../components/RedirectToBack.vue'
 import TitleBar from './../../components/TitleBar.vue'
 import ButtonBase from './../../components/ButtonBase.vue'
 import FolderNotFoundSvg from '../../svg/FolderNotFound.vue'
+import { userRoles as roles } from './../../helpers/LocalStorage'
 
 export default {
   components: {
@@ -91,6 +93,7 @@ export default {
         current_page: 1,
         last_page: 1,
       },
+      userRoles: roles(),
       loading: false,
       fetchVehicles: async (page = 1) => {
         app.loading = true

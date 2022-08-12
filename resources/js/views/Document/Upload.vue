@@ -55,6 +55,7 @@ import RedirectToBack from '../../components/RedirectToBack.vue'
 import TitleBar from '../../components/TitleBar.vue'
 import ModalSuccess from '../../components/ModalSuccess.vue'
 import Loading from './../../components/LoadingBalls.vue'
+import { userRoles as roles } from './../../helpers/LocalStorage'
 
 export default {
   components: {
@@ -75,6 +76,7 @@ export default {
       modal: false,
       documents: [],
       vehicle: {},
+      userRoles: roles(),
       disabled: computed(() => !app.documents.some(document => document?.tempFiles?.length)),
       closeModal: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
       fetchVehicle: async () => {
@@ -121,6 +123,9 @@ export default {
       },
     })
 
+    if (!app.userRoles.includes('document-store')) {
+      router.go(-1)
+    }
     app.fetchDocumentTypes()
     app.fetchVehicle()
 
