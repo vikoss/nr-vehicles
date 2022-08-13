@@ -1,5 +1,5 @@
 <template>
-  <div>
+<!--   <div>
 
     <div class="mb-7 hidden sm:block">
       <div
@@ -145,7 +145,64 @@
       :document-type="app.mainDocumentMIMEType"
       @closed="app.toggleModal(false)"
     />
+  </div> -->
+  <div v-for="(document, index) in documents" :key="index">
+    <div @click="app.changeMainImageAndOpenModal(index)" class="mb-6">
+      <div class="bg-gray-200 w-full h-72 flex justify-center cursor-pointer">
+        <img
+          v-show="!document.url.includes('pdf')"
+          style="max-inline-size: 100%; block-size: auto; aspect-ratio: 2/1; object-fit: contain;"
+          :src="document.url"
+          :alt="document.description"
+        >
+        <div
+          v-show="document.url.includes('pdf')"
+          class="w-full h-auto"
+          style="position: relative; overflow: hidden;"
+        >
+          <pdf-svg
+            v-if="app.isMobile"
+            class="w-full h-full max-h-full"
+          />
+          <iframe
+            v-else
+            style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"
+            :src="document.url"
+          />
+        </div>
+      </div>
+      <div class="flex justify-between pt-1">
+        <div>
+          <p class="text-black font-medium text-base leading-none tracking-tighter">
+            Documento:
+            <strong class="font-normal text-sm">
+              {{ document.type }}
+            </strong>
+          </p>
+          <p v-show="document.description" class="text-black font-medium text-base leading-none tracking-tighter">
+            Descripción:
+            <strong class="font-normal text-sm">
+              {{ document.description }}
+            </strong>
+          </p>
+        </div>
+        <div class="pl-2" v-show="app.userRoles.includes('document-destroy')">
+          <img
+            src="./../assets/svg/deleteItem.svg"
+            alt="Elimiar documento"
+            class="h-11 w-11 max-w-none cursor-pointer"
+            @click="app.deleteImage(document.id)"
+          >
+        </div>
+      </div>
+    </div>
   </div>
+  <modal-preview-image
+    :show="app.modal"
+    :url-file="app.mainImage.url"
+    :document-type="app.mainDocumentMIMEType"
+    @closed="app.toggleModal(false)"
+  />
 </template>
 
 <script>
@@ -154,11 +211,13 @@ import ArrowRight from './../svg/ArrowRight.vue'
 import ArrowLeft from './../svg/ArrowLeft.vue'
 import ModalPreviewImage from './ModalPreviewImage.vue'
 import { userRoles as roles } from '../helpers/LocalStorage'
+import { isMobile } from './../helpers/utilities'
+import PdfSvg from './../svg/PDF.vue'
 
 export default {
   name: 'ImageViewer',
   emits: ['delete'],
-  components: { ArrowRight, ModalPreviewImage, ArrowLeft },
+  components: { ArrowRight, ModalPreviewImage, ArrowLeft, PdfSvg },
   props: {
     documents: {
       type: Array,
@@ -170,6 +229,7 @@ export default {
       mainImage: props.documents[0],
       modal: false,
       userRoles: roles(),
+      isMobile: isMobile(),
       mainDocumentMIMEType: computed(() => app.mainImage.url.includes('.pdf') ? 'pdf' : 'image'),
       srcPDF: computed(() => `${app.mainImage.url}#toolbar=0`),
       changeMainImage: (index) => {
@@ -180,7 +240,15 @@ export default {
       },
       changeMainImageAndOpenModal: (index) => {
         app.mainImage = props.documents[index]
-        app.toggleModal(true)
+        if (!app.isMobile) {
+          app.toggleModal(true)
+        } else {
+          if (app.mainDocumentMIMEType === 'pdf') {
+            window.open(app.mainImage.url)
+          } else {
+            app.toggleModal(true)
+          }
+        }
       },
       deleteImage: (documentId) => emit('delete', documentId),
       scrollLeft: () => document.getElementById('galery-container').scrollLeft += 160,
