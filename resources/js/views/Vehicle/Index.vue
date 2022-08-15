@@ -9,14 +9,17 @@
           subtitle="Consulta la información del vehículo."
           style="margin-bottom: 1.2rem;"
         />
-        <button-base
-          id="button-add-vehicle"
-          title="Agregar un vehículo"
-          class="h-14 w-14 rounded-full text-2xl"
-          label="➕️"
-          @click="app.goToVehicleCreate"
-          v-show="app.userRoles.includes('vehicle-store')"
-        />
+        <div class="flex items-center cursor-pointer">
+          <p>Agregar un vehículo</p>
+          <button-base
+            id="button-add-vehicle"
+            title="Agregar un vehículo"
+            class="h-14 w-14 rounded-full text-2xl"
+            label="➕️"
+            @click="app.goToVehicleCreate"
+            v-show="app.userRoles.includes('vehicle-store')"
+          />
+        </div>
       </div>
       <search-bar
         id="search-bar"
