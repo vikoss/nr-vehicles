@@ -9,15 +9,14 @@
           subtitle="Consulta la información del vehículo."
           style="margin-bottom: 1.2rem;"
         />
-        <div class="flex items-center">
-          <p>Agregar un vehículo</p>
+        <div v-show="app.userRoles.includes('vehicle-store')" class="flex items-center">
+          <p class="hidden sm:block">Agregar un vehículo</p>
           <button-base
             id="button-add-vehicle"
             title="Agregar un vehículo"
             class="h-14 w-14 rounded-full text-2xl"
             label="➕️"
             @click="app.goToVehicleCreate"
-            v-show="app.userRoles.includes('vehicle-store')"
           />
         </div>
       </div>

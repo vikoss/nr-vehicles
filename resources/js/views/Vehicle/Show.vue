@@ -1,11 +1,26 @@
 <template>
   <header-base />
   <main class="px-6 sm:px-16 py-12">
-    <redirect-to-back :route="app.goToVehicles" />
+
+    <div class="flex items-center justify-between">
+      <redirect-to-back :route="app.goToVehicles" />
+      <div v-show="app.userRoles.includes('vehicle-destroy')" class="flex items-center cursor-pointer flex-none">
+        <p class="hidden sm:block">Eliminar vehículo</p>
+        <img
+          class="cursor-pointer w-10 h-10"
+          title="Eliminar"
+          src="./../../assets/svg/deleteItem.svg"
+          alt="delete item"
+          @click="() => app.toggleModal({ modal: 'confirm', value: true })"
+        >
+      </div>
+    </div>
+
     <title-bar
       :title="app.vehicle.name"
       subtitle="Consulta la información del vehículo. De ser necesario puedes cargar documentación."
     />
+
     <input-base
       id="inventory_number"
       v-model="app.vehicle.inventory_number"
@@ -74,13 +89,26 @@
         :disabled="false"
       />
     </div>
+
+    <modal-confirm
+      :show="app.modals.confirm"
+      :closed="() => app.toggleModal({ modal: 'confirm', value: false })"
+      :action="app.deleteVehicle"
+      message="¿Desea elimiar el vehículo?"
+    />
+
+    <modal-success
+      :show="app.modals.success"
+      :closed="app.goToVehicles"
+      message="El vehiculo se elimino exitosamente."
+    />
   </main>
 </template>
 
 <script>
 import { reactive } from 'vue'
 import { useRoute, useRouter } from 'vue-router'
-import { getVehicle } from '../../api/vehicles'
+import { getVehicle, destroyVehicle } from '../../api/vehicles'
 import { getDirections } from './../../api/directions'
 import HeaderBase from '../../components/HeaderBase.vue'
 import RedirectToBack from '../../components/RedirectToBack.vue'
@@ -90,6 +118,8 @@ import TitleBar from '../../components/TitleBar.vue'
 import SelectBase from '../../components/SelectBase.vue'
 import Loading from '../../components/LoadingBalls.vue'
 import { userRoles as roles } from './../../helpers/LocalStorage'
+import ModalConfirm from './../../components/ModalConfirm.vue'
+import ModalSuccess from './../../components/ModalSuccess.vue'
 
 export default {
   components: {
@@ -100,6 +130,8 @@ export default {
     SelectBase,
     ButtonBase,
     Loading,
+    ModalConfirm,
+    ModalSuccess,
   },
   setup() {
     const router = useRouter()
@@ -116,8 +148,20 @@ export default {
       goToUploadVehicleDocuments: () => router.push({ name: 'VehicleDocuments', params: { vehicle: route.params.vehicle }}),
       goToVehicleUpdate: () => router.push({ name: 'VehicleUpdate', params: { vehicle: route.params.vehicle }}),
       goToVehicles: () => router.push({ name: 'VehicleIndex' }),
+      deleteVehicle: async () => {
+        app.loading = true
+        await destroyVehicle(app.vehicle.id)
+        app.loading = false
+        app.toggleModal({ modal: 'confirm', value: false })
+        app.toggleModal({ modal: 'success', value: true })
+      },
       vehicle: {},
       userRoles: roles(),
+      modals: {
+        success: false,
+        confirm: false,
+      },
+      toggleModal: ({ modal, value }) => (app.modals[modal] = value),
       fetchInitialData: async () => {
         app.loading = true
         await app.fetchVehicle()
