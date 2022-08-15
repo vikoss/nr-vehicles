@@ -13,9 +13,8 @@
             class="h-20"
             style="position: relative; overflow: hidden; width: 100%;"
           >
-            <iframe
-              style="position: absolute; top: 0; left: 0; bottom: 0; right: 0; width: 100%; height: 100%;"
-              :src="img"
+            <pdf-svg
+              class="w-full h-full max-h-full"
             />
           </div>
         </div>
@@ -64,10 +63,11 @@ import PreviewDefaultImage from './../assets/svg/previewImage.svg'
 import ModalPreviewImage from './ModalPreviewImage.vue'
 import PencilSvg from './../svg/Pencil.vue'
 import ModalComment from './ModalComment.vue'
+import PdfSvg from './../svg/PDF.vue'
 
 export default {
   name: 'PreviewImage',
-  components: { ModalPreviewImage, PencilSvg, ModalComment },
+  components: { ModalPreviewImage, PencilSvg, ModalComment, PdfSvg },
   props: {
     img: {
       type: String,
