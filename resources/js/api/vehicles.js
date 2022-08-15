@@ -1,4 +1,4 @@
-import { post, get, put } from 'axios'
+import { post, get, put, delete as destroy } from 'axios'
 import { JWT } from '../helpers/LocalStorage'
 import { API } from './baseUrl'
 
@@ -42,4 +42,14 @@ const storeVehicle = (vehicle) => new Promise((resolve, reject) =>
   .catch(({ response }) => reject(response))
   )
 
-export { searchVehicles, getVehicle, updateVehicle, storeVehicle }
+const destroyVehicle = (vehicle) => new Promise((resolve, reject) =>
+  destroy(`${API}/api/vehicles/${vehicle}`, {
+    headers: {
+      Authorization: `Bearer ${JWT()}`,
+    },
+  })
+  .then(({ data }) => resolve(data))
+  .catch(({ response }) => reject(response))
+  )
+
+export { searchVehicles, getVehicle, updateVehicle, storeVehicle, destroyVehicle }
