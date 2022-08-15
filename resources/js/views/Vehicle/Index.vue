@@ -9,7 +9,7 @@
           subtitle="Consulta la información del vehículo."
           style="margin-bottom: 1.2rem;"
         />
-        <div class="flex items-center cursor-pointer">
+        <div class="flex items-center">
           <p>Agregar un vehículo</p>
           <button-base
             id="button-add-vehicle"
