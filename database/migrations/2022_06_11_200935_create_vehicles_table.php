@@ -22,6 +22,7 @@ return new class extends Migration
             $table->string('economic_number')->nullable();
             $table->string('serial_number')->nullable();
             $table->foreignId('direction_id')->nullable()->constrained('directions');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
