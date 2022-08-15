@@ -28,4 +28,9 @@ class VehicleController extends Controller
     {
         return Vehicle::create($request->all());
     }
+
+    public function destroy(Vehicle $vehicle)
+    {
+        return $vehicle->delete();
+    }
 }
