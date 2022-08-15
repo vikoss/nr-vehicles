@@ -146,9 +146,9 @@
       @closed="app.toggleModal(false)"
     />
   </div> -->
-  <div v-for="(document, index) in documents" :key="index">
-    <div @click="app.changeMainImageAndOpenModal(index)" class="mb-6">
-      <div class="bg-gray-200 w-full h-72 flex justify-center cursor-pointer">
+  <div v-for="(document, index) in documents" :key="index" class="m max-w-screen-md mx-auto">
+    <div class="mb-6">
+      <div @click="app.changeMainImageAndOpenModal(index)" class="bg-gray-200 w-full h-72 flex justify-center cursor-pointer">
         <img
           v-show="!document.url.includes('pdf')"
           style="max-inline-size: 100%; block-size: auto; aspect-ratio: 2/1; object-fit: contain;"
@@ -172,7 +172,7 @@
         </div>
       </div>
       <div class="flex justify-between pt-1">
-        <div>
+        <div @click="app.changeMainImageAndOpenModal(index)" class="cursor-pointer">
           <p class="text-black font-medium text-base leading-none tracking-tighter">
             Documento:
             <strong class="font-normal text-sm">

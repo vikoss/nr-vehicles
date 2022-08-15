@@ -10,7 +10,6 @@
 
     <div v-show="!app.loading">
       <image-viewer
-        class="mt-12"
         v-if="!!app.documents.length"
         :documents="app.documents"
         @delete="app.showModalConfirm"
